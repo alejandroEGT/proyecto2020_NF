@@ -13,7 +13,7 @@ class CompaniaController extends Controller
 {
     public function ingresar(Request $r)
     {
-         try{
+        //  try{
             DB::beginTransaction();
             $c = new Compania;
             $c->nombre = $r->nombre;
@@ -65,21 +65,21 @@ class CompaniaController extends Controller
             
            
 
-        }catch(QueryException $e){
-            DB::rollBack();
-			return[
-				'estado'  => 'failed', 
-                'mensaje' => 'QEx: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
-                'error' => $e
-			];
-		}
-		catch(\Exception $e){
-            DB::rollBack();
-			return[
-				'estado'  => 'failed', 
-                'mensaje' => 'Ex: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
-                'error' => $e
-			];
-		}
+        // }catch(QueryException $e){
+        //     DB::rollBack();
+		// 	return[
+		// 		'estado'  => 'failed', 
+        //         'mensaje' => 'QEx: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
+        //         'error' => $e
+		// 	];
+		// }
+		// catch(\Exception $e){
+        //     DB::rollBack();
+		// 	return[
+		// 		'estado'  => 'failed', 
+        //         'mensaje' => 'Ex: No se ha podido seguir con el proceso de guardado, intente nuevamente o verifique sus datos',
+        //         'error' => $e
+		// 	];
+		// }
     }
 }
