@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get("listar_servicio/{estado_historico_habitaciones_id}","ServicioHabitacionController@listar");
     Route::get("traer_cliente_boleta/{est_hist_hab_id}", "ServicioHabitacionController@traer_cliente_boleta");
     
+     Route::post("hotel_enviar_boleta_email","ServicioHabitacionController@hotel_enviar_boleta_email");
+    // hotel_enviar_boleta_email
     // CLIENTES
     Route::get("todos_clientes", "ClienteController@todos_clientes");
 

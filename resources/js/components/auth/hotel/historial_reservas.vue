@@ -1,5 +1,5 @@
 <template>
-    <div style="width:100%" class="myDiv2">
+    <div style="width:100%" class="myDiv2" >
     
         <el-header>Hotel / Reservas / Estado</el-header>
         <el-main>
@@ -408,9 +408,10 @@
 
                                             <el-header v-if="true">otros servicios</el-header>
                                                 <!-- {{ lista }} -->
+                                                <!-- show-summary -->
                                             <el-table
                                              border
-                                             show-summary
+                                             
                                             :data="lista"
                                             style="width: 100%">
                                                 <el-table-column label="Cantidad" width="180">
@@ -446,7 +447,7 @@
                         
                                     </div>
                                     <el-button type="text" @click="generatePDF">Comprobante PDF</el-button>
-                    
+                                    <el-button type="text" @click="enviar_email(habitacion,data, scope.row, (total_hospedaje + data.precio), lista)">Enviar por correo</el-button>
                 
                                 </el-dialog>
                                 <!-- FIN modal de la boleta o comprobante des ervicio -->    
@@ -705,6 +706,29 @@ export default {
                     return ((zero.repeat(width - length)) + numberOutput.toString()); 
                 }
             }
+        },
+
+        enviar_email(hab, primera, segunda, tercera,lista){
+
+            const data = {
+                'habitacion':hab,
+                'head': primera,
+                'tabla': segunda,
+                'total': tercera,
+                'lista':lista
+            };
+
+            console.log(data);
+
+            axios.post('api/hotel_enviar_boleta_email', data).then((res) => {
+
+            }).catch((error) => {
+                console.log(error);
+                this.$message({
+                    message: 'Proceso denegado',
+                    type: 'error'
+                    });
+            });
         },
         
 

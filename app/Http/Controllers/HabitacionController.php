@@ -167,7 +167,8 @@ class HabitacionController extends Controller
                             ehh.precio,
                             nombre,
                             identificador,
-                            tipo
+                            tipo,
+                            email
                             
                             
                         from niveles_habitaciones h
