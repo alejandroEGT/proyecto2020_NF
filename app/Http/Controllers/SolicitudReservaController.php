@@ -81,7 +81,10 @@ class SolicitudReservaController extends Controller
                             from solicitud_reserva sol
                             inner join niveles_habitaciones hab on hab.id = sol.nivel_habitacion_id
                             inner join niveles niv on niv.id = hab.niveles_id
-                            inner join categoria_habitacion cat on cat.id = hab.categoria_id");
+                            inner join categoria_habitacion cat on cat.id = hab.categoria_id
+                            where sol.activo = 'S'
+
+                    ");
 
         if(count($listar)>0){
 

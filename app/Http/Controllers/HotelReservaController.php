@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\HotelHabitacion;
+use App\solicitud_reserva;
 use Illuminate\Http\Request;
 use App\EstadoHistoricoReserva;
 use App\HotelRegistroHospedaje;
@@ -19,7 +20,7 @@ class HotelReservaController extends Controller
         
         try{
             DB::beginTransaction();
-
+            $val = (!empty($r->solicitud_reserva_id))?true:false;
 
          //registrar hospedaje
          $rh = new HotelRegistroHospedaje;
@@ -35,6 +36,12 @@ class HotelReservaController extends Controller
                 $hab = HotelHabitacion::find($r->habitacion_id);
                 $hab->estado = $r->estado;
                 if ($hab->save()) {
+
+                    if ($val) {
+                       $sr = solicitud_reserva::find($r->solicitud_reserva_id);
+                       $sr->activo = 'N';
+                       $sr->save(); // aqui desactivamos la solicitud de reserva
+                    }
                     DB::commit();
                     return[
                         'estado'=>'success',

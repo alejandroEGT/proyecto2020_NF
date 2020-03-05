@@ -192,6 +192,25 @@
                                 type="danger"
                                 @click="handleDelete(scope.$index, scope.row)">Eliminar</el-button> -->
                             </template>
+
+                            </el-table-column>
+
+                            <el-table-column
+                            label="Operaciones"  width="100">
+                                <template slot-scope="scope">
+                                    <el-button
+                                    v-if="scope.row.activo == 'N'"
+                                    size="mini"
+                                    type="danger"
+                                    @click="active(scope.row.id, scope.row.activo)">NO</el-button>
+
+                                    <el-button
+                                    v-if="scope.row.activo == 'S'"
+                                    size="mini"
+                                    type="success"
+                                    @click="active(scope.row.id, scope.row.activo)">SI</el-button>
+                                    
+                                </template>
                             </el-table-column>
                         </el-table>
 							<!-- <el-button type="primary" @click="insertar" round>Actualizar</el-button> -->
@@ -297,6 +316,16 @@ export default {
 
             });
         },
+
+        active(hab_id,estado){
+            axios.get('api/active_habitacion/'+hab_id+'/'+estado).then((res)=>{
+                if(res.data.estado=="success"){
+                    this.listar_hab();
+                }
+                
+
+            });
+        }
     }
 }
 </script>

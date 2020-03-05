@@ -58,7 +58,9 @@ class HabitacionController extends Controller
                             h.descripcion,
                             hc.categoria,
                             h.precio,
-                            h.detalle
+                            h.detalle,
+                            h.activo,
+                            h.id
                         from niveles_habitaciones h
                         inner join niveles n on n.id = h.niveles_id
                         inner join categoria_habitacion hc on hc.id = h.categoria_id
@@ -186,5 +188,28 @@ class HabitacionController extends Controller
             return $listar; 
         }
 
+    }
+
+    public function active_habitacion($id, $estado)
+    {
+        $hab = HotelHabitacion::find($id);
+
+        if ($hab) {
+            
+            if ($estado == 'N') {
+            $hab->activo = 'S';
+            }
+
+            if ($estado == 'S') {
+                $hab->activo = 'N';
+            }
+
+            if ($hab->save()) {
+               return [
+                    'estado' => 'success',
+                    'mensaje' => 'Cambio de estado'
+               ];
+            }
+        }
     }
 }

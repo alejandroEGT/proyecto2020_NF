@@ -232,7 +232,8 @@
                             <br>
 
                             <div style="text-align:center;">
-                                <el-button type="primary" @click="insertar_reserva(get_cliente.id, estado_hab, pago, detalle, fecha, scope.row.habitacion_id)" round>Guardar</el-button>
+                                <el-button type="primary" @click="insertar_reserva(get_cliente.id, estado_hab, pago, detalle, fecha, scope.row.habitacion_id, scope.row.solicitud_id);(activo_modal==true)?
+                                scope.row.modal=true:scope.row.modal=false" round>Guardar</el-button>
                             </div>
 
                             
@@ -281,6 +282,7 @@ export default {
             contacto:'',
             email:'',
             direccion:'',
+            activo_modal:true,
 
              tipos:[
                 {
@@ -396,13 +398,15 @@ export default {
                     type: 'success'
                     });
                     
-                    this.dialog_cliente = false;
+                     this.activo_modal = true;
                     // document.getElementById("btn_buscar").onClick = function(){
                     //     this.buscar();
                     // };
 
                     document.getElementById('btn_buscar').click()
                 }else{
+                    this.activo_modal = false;
+
                     this.$message({
                         showClose: true,
                         message: ''+res.data.mensaje,
@@ -413,7 +417,7 @@ export default {
             
         },
 
-        insertar_reserva(cliente_id, estado_hab, gpago, gdetalle, gfecha, habitacion_id){
+        insertar_reserva(cliente_id, estado_hab, gpago, gdetalle, gfecha, habitacion_id, sr_id){
 
             const data = {
                 cliente: cliente_id,
@@ -421,23 +425,32 @@ export default {
                 pago: gpago,
                 detalle: gdetalle,
                 fecha: gfecha,
-                habitacion_id: habitacion_id
+                habitacion_id: habitacion_id,
+                solicitud_reserva_id: sr_id
             };
             console.log(data);
 
             axios.post("api/insertar_reserva", data).then((res)=>{
                 if(res.data.estado == "success"){
+                    // this.cerrar = false;
+                    // console.log("1: "+this.cerrar);
                     this.$message({
                     message: res.data.mensaje,
                     type: 'success'
                     });
+
+                    this.listar();
                 }
 
                 if(res.data.estado == "failed"){
+                    // this.cerrar = false;
+                    // console.log("2: "+this.cerrar);
                     this.$message({
                     message: res.data.mensaje,
                     type: 'error'
                     });
+                    var close = document.getElementsByClassName('el-dialog__headerbtn');
+                    close.onclick = true;
                 }
             });
         }

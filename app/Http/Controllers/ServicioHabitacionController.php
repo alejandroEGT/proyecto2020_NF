@@ -97,6 +97,7 @@ class ServicioHabitacionController extends Controller
         $habitacion = $r->habitacion;
         $descripcion_nivel = $habitacion['descripcion_nivel'];
         $nivel = $habitacion['nivel'];
+        $desc = $habitacion['descripcion'];
         $categoria = $habitacion['categoria'];
         $detalle = $habitacion['detalle'];
 
@@ -122,6 +123,7 @@ class ServicioHabitacionController extends Controller
         use(
             $html, 
             $descripcion_nivel,
+            $desc,
             $nivel,
             $categoria,
             $detalle,
@@ -146,7 +148,7 @@ class ServicioHabitacionController extends Controller
 
                     <el-header>Datos de reserva y cliente</el-header><br>
                     <label style='margin:10px'><b>Edificio:</b>".$descripcion_nivel."</label><br>
-                    <label style='margin:10px'><b>Habitación:</b>'Nivel ".$nivel.", numero o nombre '+habitacion.descripcion}}</label><br>
+                    <label style='margin:10px'><b>Habitación:</b>'Nivel ".$nivel.", numero o nombre ".$desc."</label><br>
                     <label style='margin:10px'><b>Categoría:</b>".$categoria."</label><br>
                     <label style='margin:10px'><b>Detalle:</b>".$detalle."</label>
                     <br><br>
@@ -199,6 +201,9 @@ class ServicioHabitacionController extends Controller
 
 
 //https://stackoverflow.com/questions/33939393/failed-to-authenticate-on-smtp-server-error-using-gmail
+
+//cuando subi al server no funcionaba la cuenta , activar este boton en cuenta google
+//https://accounts.google.com/DisplayUnlockCaptcha
 
 // <img height="50px" src="neofox-nav.png" alt="" style="text-align: center;"><br> <center><h2> Hotel Restovar</h2></center> <center><small style="text-align: center;">Pje rio Yakki - Los Angeles.</small> <small style="text-align: center;"><br>+56986523599</small></center> <br> <header class="el-header" style="height: 60px;">Datos de reserva y cliente</header> <br> <label style="margin: 10px;"><b>Edificio:</b>Edificio principal</label><br> <label style="margin: 10px;"><b>Habitación:</b>Nivel 1, numero o nombre 01</label><br> <label style="margin: 10px;"><b>Categoría:</b>Individual</label><br> <label style="margin: 10px;"><b>Detalle:</b>cama individual + television</label> <br><br> <label for="" style="margin: 10px;"><b>Cliente:</b> Alejandro Godoy</label><br> <label for="" style="margin: 10px;"><b>Identificador:</b> 188056520</label><br> <label for="" style="margin: 10px;"><b>Tipo identificador:</b> CDI</label><br> <label for="" style="margin: 10px;"><b>Detalle de hospedaje: </b>El cliente se queda de inmediato en el hotel</label> <br><br> <header class="el-header" style="height: 60px;">Venta directa</header> <br> <label style="margin: 10px;"><b>Codigo: </b>10</label><br> <label for="" style="margin: 10px;"><b>Precio de hospedaje: </b> $11.000</label><br> <header class="el-header" style="height: 60px;">otros servicios</header> <div class="el-table el-table--fit el-table--border el-table--scrollable-x el-table--enable-row-hover el-table--enable-row-transition" style="width: 100%;"><div class="hidden-columns"><div></div> <div></div> <div></div> <div></div></div><div class="el-table__header-wrapper"><table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 720px;"><colgroup><col name="el-table_2_column_10" width="180"><col name="el-table_2_column_11" width="180"><col name="el-table_2_column_12" width="180"><col name="el-table_2_column_13" width="180"></colgroup><thead class=""><tr class=""><th colspan="1" rowspan="1" class="el-table_2_column_10     is-leaf"><div class="cell">Cantidad</div></th><th colspan="1" rowspan="1" class="el-table_2_column_11     is-leaf"><div class="cell">Descripcion</div></th><th colspan="1" rowspan="1" class="el-table_2_column_12     is-leaf"><div class="cell">Precio unitario</div></th><th colspan="1" rowspan="1" class="el-table_2_column_13     is-leaf"><div class="cell">Precio total</div></th></tr></thead></table></div><div class="el-table__body-wrapper is-scrolling-left"><table cellspacing="0" cellpadding="0" border="0" class="el-table__body" style="width: 720px;"><colgroup><col name="el-table_2_column_10" width="180"><col name="el-table_2_column_11" width="180"><col name="el-table_2_column_12" width="180"><col name="el-table_2_column_13" width="180"></colgroup><tbody><tr class="el-table__row"><td rowspan="1" colspan="1" class="el-table_2_column_10  "><div class="cell">↵                                                    1↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_11  "><div class="cell">↵                                                    Pan con mantequilla↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_12  "><div class="cell">↵                                                    $500↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_13  "><div class="cell">↵                                                    $500↵                                                </div></td></tr><tr class="el-table__row"><td rowspan="1" colspan="1" class="el-table_2_column_10  "><div class="cell">↵                                                    1↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_11  "><div class="cell">↵                                                    Bebida coca cola↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_12  "><div class="cell">↵                                                    $800↵                                                </div></td><td rowspan="1" colspan="1" class="el-table_2_column_13  "><div class="cell">↵                                                    $800↵                                                </div></td></tr><tr class="el-table__row"><td rowspan="1" colspan="1" class="el-table_2_column_10  "><div class="cell">↵                                   
 

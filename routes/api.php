@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('listar_habitaciones/{id}', 'HabitacionController@listar_hotel_habitacion');
     Route::get('listar_todas_habitaciones', 'HabitacionController@listar_todo_hotel_habitacion');
     Route::get('traer_hotel_habitacion/{habitacion_id}', 'HabitacionController@traer_hotel_habitacion');
-    
+    Route::get('active_habitacion/{id}/{estado}', 'HabitacionController@active_habitacion');
 
     Route::post('registrar_cliente', 'ClienteController@registrar_cliente');
     Route::get('traer_cliente/{identificador}', 'ClienteController@traer_cliente');
